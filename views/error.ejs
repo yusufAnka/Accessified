@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <%- include('./header.ejs') %>
+
+  <%- include('./menuvar.ejs') %>
+
+
+  <title>ACCESSIFIED - ERROR</title>
+<body>
+  <div class="container-fluid main-box">
+      <div class="col text-center py-3">
+        <h1> <%= error.message %></h1>
+      </div>
+  </div>
+  <%- include('./footer.ejs') %>
+</body>
+</html>

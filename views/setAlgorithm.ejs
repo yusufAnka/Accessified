@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./header.ejs') %>
+    <title>NODE WEEK 6 TASK CRM|</title>
+
+    <body>
+        <div class="container-fluid main-box">
+            <div class="col text-center py-3">
+                <h1>Set Algorithm</h1>
+            </div>
+            <div class="row g-6">
+                <div class="col-6 offset-3 border-secondary shadow py-3 px-5 rounded">
+                    <form class="form_container" method="post" action="/users/setAlgorithm"
+                        enctype="application/x-www-form-urlencoded">
+                        <div class="form-group mb-1">
+                            <label for="name" class="form-label"></label>
+                            <div class="">
+                                <input type="name" class="form-control" id="ExamName" placeholder="Exam Name"
+                                    name="examName">
+                            </div>
+                        </div>
+                        <div class="form-group mb-1">
+                            <label for="week" class="form-label"></label>
+                            <div class="">
+                                <input type="name" class="form-control" id="week" placeholder="Week"
+                                    name="week">
+                            </div>
+                        </div>
+                        <div class="form-group mb-1 test">
+                            <label for="testcase<%= count %>" class="form-label"></label>
+                            <div class="">
+                                <input type="text" class="form-control" id="testCase" placeholder="Test Case <%= count %>"
+                                    name="testcase<%= count %>">
+                            </div>
+                            <label for="result<%= count %>" class="form-label"></label>
+                            <div class="">
+                                <input type="text" class="form-control" id="resultOne" placeholder="Result<%= count %>"
+                                    name="result<%= count %>">
+                            </div>
+                        </div>
+                        <div class="form-group mb-2">
+                            <div class="text-center">
+                                <input type="button" class="btn btn-primary addTestcaseBtn" id="addTestcaseBtn" value="Add Test">
+                            </div>
+                        </div>
+                        <div class="form-group mb-1 testcase">
+                            <label for="testcaseType" class="form-label"></label>
+                            <div class="">
+                                <input type="text" class="form-control" id="testcaseType" placeholder="Test Case Type"
+                                    name="testcaseType">
+                            </div>
+                        </div>
+                        <div class="form-group mb-1 result">
+                            <label for="resultType" class="form-label"></label>
+                            <div class="">
+                                <input type="text" class="form-control" id="resultType" placeholder="ResultType"
+                                    name="resultType">
+                            </div>
+                        </div>
+                        <div class="form-group mb-1">
+                            <label for="count" class="form-label"></label>
+                            <div class="">
+                                <input type="text" class="form-control count" id="count" placeholder="Number of Test Case"
+                                    name="count" >
+                            </div>
+                        </div>
+                        
+                        <div class="form-group mb-5">
+                            <label for="notes" class="form-label"></label>
+                            <div class="">
+                                <textarea type="text" class="form-control" id="instruction" placeholder="Examination Instruction"
+                                    name="instruction"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <div class="text-center">
+                                <input type="submit" class="btn btn-primary" id="submit" value="Set Algorithm">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <%- include('./footer.ejs') %>
+    </body>
+
+</html>

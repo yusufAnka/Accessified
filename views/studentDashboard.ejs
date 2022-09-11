@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+	<link rel="stylesheet" href="/stylesheets/studentdashboard.css"/>
+    <title>Accessified</title>
+    <%- include('./menuvar.ejs') %>
+<body>
+    <h2><marquee width="100%" direction="right" height="30px">Welcome <%= user.name %></h2>  </marquee>
+
+    <div class="both-rows">
+        
+            
+          
+      <div class="column left-side" style="background-color:rgb(247, 242, 242);">
+       
+            
+            <div class="form-group mb-2">
+              <div class="text-center">
+                  <input type="button" class="btn btn-primary takeAlgorithmBtn" id="takeAlgorithmBtn" value="Take Algorithm">
+              </div>
+          </div>
+          <div class="form-group mb-2">
+            <div class="text-center">
+                <input type="button" class="btn btn-primary takeExamBtn" id="takeExamBtn" value="Take Exam">
+            </div>
+        </div>
+        <div class="form-group mb-2">
+          <div class="text-center">
+              <input type="button" class="btn btn-primary generateCertificate" id="ExamBtn" value="generateCertificate">
+          </div>
+      </div>
+      <div class="form-group mb-2">
+        <div class="text-center">
+            <input type="button" class="btn btn-primary viewGradeBtn" id="viewGradeBtn" value="View Grade">
+        </div>
+    </div>
+      </div>
+
+
+
+      <div class="column right-side" style="background-color:#Cfbfbf;">
+    
+       
+   
+    
+    
+            <div class="container-fluid main-box examPage seen">
+              <div class="col text-center py-3">
+                <h1>SELECT EXAM</h1>
+              </div>
+                  <form class="form_container" method="post" action="/users/exam" enctype="application/x-www-form-urlencoded">
+                   
+                    <div class="form-group mb-1">
+                      <label for="colFormLabel" class="form-label"></label>
+                      <div class="">
+                        <input type="text" class="form-control" id="colFormLabel" placeholder="Input Examination ID" name="examId">
+                      </div>
+                    </div>
+                    <div class="form-group mb-3">
+                      <div class="text-center">
+                        <input type="submit" class="btn btn-primary" id="Create" value="Search" >
+                      </div>
+                    </div>
+                  </form>
+               
+          </div>
+
+
+          <div class="container-fluid main-box algorithmPage seen">
+            <div class="col text-center py-3">
+              <h1>SELECT ALGORITHM</h1>
+            </div>
+           
+                <form class="form_container" method="post" action="/users/algorithm" enctype="application/x-www-form-urlencoded">
+                 
+                  <div class="form-group mb-1">
+                    <label for="colFormLabel" class="form-label"></label>
+                    <div class="">
+                      <input type="text" class="form-control" id="colFormLabel" placeholder="Input Algorithm ID" name="id">
+                    </div>
+                  </div>
+                  <div class="form-group mb-3">
+                    <div class="text-center">
+                      <input type="submit" class="btn btn-primary" id="Create" value="Search" >
+                    </div>
+                  </div>
+                </form>
+             
+        </div>
+
+        <div class="container-fluid main-box gradePage seen">
+            <div class="col text-center py-3">
+              <h1>VIEW GRADE</h1>
+            </div>
+            
+                <form class="form_container" method="post" action="/users/grade" enctype="application/x-www-form-urlencoded">
+                 
+                  <div class="form-group mb-1">
+                    <label for="colFormLabel" class="form-label"></label>
+                    <div class="">
+                      <input type="text" class="form-control" id="colFormLabel" placeholder="Input Algorithm or Exam ID" name="examId">
+                    </div>
+                  </div>
+                  <div class="form-group mb-3">
+                    <div class="text-center">
+                      <input type="submit" class="btn btn-primary" id="Create" value="Search" >
+                    </div>
+                  </div>
+                </form>
+             
+        </div>
+    
+    
+    
+    
+      </div>
+    </div>
+    <%- include('./studentDashboardJS.ejs') %>
+    <%- include('./footer.ejs') %>
+</body>
+
+</html>
+

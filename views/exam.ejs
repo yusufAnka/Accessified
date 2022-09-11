@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./header.ejs') %>
+  <%- include('./menuvar.ejs') %>
+  <title>ACCESSIFIED - EXAM</title>
+<body>
+  <div class="container-fluid main-box">
+      <div class="col text-center py-3">
+        <h1>Exam Name: <%= exam.examName %></h1>
+        <h1>Exam ID: <%= exam.id %></h1>
+      </div>
+      <div class="">
+        <div class="">
+          <form class="form_ container" method="post" action="/users/submitExam" enctype="application/x-www-form-urlencoded">
+
+
+            <% for (let i = 0; i < exam.question.length; i++) {%>
+                <div class="form-group mb-5">
+                    <h3 class="questionExam"><%= exam.question[i] %></h3>
+                    <label for="notes" class="form-label"></label>
+                    <div class="">
+                        <textarea type="text" class="form-control" id="answer" placeholder="Answer to Question"
+                            name="answer<%= i %>"></textarea>
+                    </div>
+                </div>
+                
+                <%} %>
+
+            <div class="form-group mb-3">
+              <div class="text-center">
+                <input type="submit" class="btn btn-primary" id="Create" value="Submit Exam" >
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+  </div>
+  <%- include('./footer.ejs') %>
+</body>
+</html>

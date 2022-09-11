@@ -1,0 +1,60 @@
+!DOCTYPE html>
+<html lang="en">
+  <%- include('./header.ejs') %>
+  <%- include('./menuvar.ejs') %>
+  <title>ACCESSIFIED</title>
+<body>
+  <div class="container-fluid main-box">
+      <div class="col text-center py-3">
+        <h1>Exam Name: <%= student.examName %></h1>
+        <h2>Student Name: <%= student.studentName %></h2>
+      
+      </div>
+      <div class="">
+        <div class="">
+            <form class="form_container" method="post" action="/users/markExam/<%= student.examinerId %>/<%= student.studentId %>/<%= student.examName %>/<%= student.examId %>/<%= student.studentName %>" enctype="application/x-www-form-urlencoded">
+                <% for (let i = 0; i < student.answer.length; i++) {%>
+                    <div class="">
+                        <h4>Question<%= i+1 %>: <%= question[i] %></h4>
+                        <h4>Answer<%= i+1 %>: <%= student.answer[i] %></h4>
+                    </div>
+                    <div class="form-group mb-1">
+                        <label for="colFormLabel" class="form-label"></label>
+                        <div class="">
+                          <input type="text" class="form-control" id="colFormLabel" placeholder="Grade" name="grade<%= i %>">
+                        </div>
+                      </div>
+                    
+                    <%} %>
+                    <div class="form-group mb-1">
+                        <label for="colFormLabel" class="form-label"></label>
+                        <div class="">
+                            <h3 class="comments">Final Grade</h3>
+                          <input type="text" class="form-control" id="colFormLabel" placeholder="Final Grade" name="totalGrade">
+                        </div>
+                      </div>
+                      <div class="form-group mb-5">
+                        <h3 class="comments">Comments</h3>
+                        <label for="notes" class="form-label"></label>
+                        <div class="">
+                            <textarea type="text" class="form-control" id="answer" placeholder="Comments"
+                                name="comments"></textarea>
+                        </div>
+                    </div>
+                <div class="form-group mb-3">
+                  <div class="text-center">
+                    <input type="submit" class="btn btn-primary" id="Create" value="Grade" >
+                  </div>
+                </div>
+              </form>
+
+
+          
+
+           
+        </div>
+      </div>
+  </div>
+  <%- include('./footer.ejs') %>
+</body>
+</html>

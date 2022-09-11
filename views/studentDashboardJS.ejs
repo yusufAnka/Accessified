@@ -1,0 +1,27 @@
+<script>
+    let takeAlgorithmBtn = document.querySelector('.takeAlgorithmBtn');
+    let takeExamBtn = document.querySelector('.takeExamBtn');
+    let viewGradeBtn = document.querySelector('.viewGradeBtn');
+    let algorithmPage = document.querySelector('.algorithmPage');
+    let examPage = document.querySelector('.examPage');
+    let gradePage = document.querySelector('.gradePage')
+
+takeAlgorithmBtn.addEventListener("click", (e)=>{
+    e.preventDefault();
+    examPage.classList.add('seen');
+    gradePage.classList.add('seen');
+    algorithmPage.classList.remove('seen')
+})
+takeExamBtn.addEventListener("click", (e)=>{
+    e.preventDefault();
+    gradePage.classList.add('seen');
+    algorithmPage.classList.add('seen');
+    examPage.classList.remove('seen');
+})
+viewGradeBtn.addEventListener("click", (e)=>{
+    e.preventDefault();
+    algorithmPage.classList.add('seen');
+    examPage.classList.add('seen');
+    gradePage.classList.remove('seen');
+})
+</script>

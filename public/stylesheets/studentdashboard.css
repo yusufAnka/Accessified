@@ -1,0 +1,88 @@
+
+
+* {
+  box-sizing: border-box;
+}
+
+/* Create two unequal columns that floats next to each other */
+.column {
+  float: left;
+  padding: 10px;
+  min-height: 800px; /* Should be removed. Only for demonstration */
+}
+
+.left-side {
+  width: 25%;
+}
+
+.right-side {
+  width: 75%;
+}
+
+/* Clear floats after the columns */
+.both-rows:after {
+  content: " ";
+  display: table;
+  clear: both;
+}
+@media screen and (max-width:800px){
+    .column{
+        width:100%;
+    }
+    
+}
+.seen {
+  display: none;
+}
+
+.btn {
+  background-color: #2f0a0a;
+  border-radius: 12px;
+  border: white;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  width: 80%
+}
+
+.btn:hover {
+  background-color: white;
+  color: #2f0a0a;
+  border: #2f0a0a;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.left-side{
+  padding-top: 100px;
+  align-items: center;
+  margin: auto;
+}
+input {
+  width: 80%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #2f0a0a;
+  border-radius: 4px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  background-color: rgb(247, 242, 242);
+}
+
+textarea {
+  width: 80%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #2f0a0a;
+  border-radius: 4px;
+  background-color: rgb(247, 242, 242);
+  resize: none;
+}
+    
+

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./header.ejs') %>
+<%- include('./menuvar.ejs') %>
+
+<title>GRADED EXAM</title>
+<body>
+
+<div class="container-fluid main-box">
+    <div class="result col-6 offset-3 border-secondary shadow py-3 px-5 rounded">
+        <h2>Exams Graded</h2>
+        <h3>Grade: <%= grade.totalGrade %> </h3>
+        <h3>Exam Name: <%= grade.examName %></h3>
+        <h3>Comment: <%= grade.comment %></h3>
+        <h3>Date Marked: <%= grade.dateMarked %></h3> 
+    </div>
+</div>
+<%- include('./footer.ejs') %>
+</body>
+</html>

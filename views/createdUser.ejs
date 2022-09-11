@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./header.ejs') %>
+<%- include('./navbar.ejs') %>
+<title>ACCESSIFIED - USER CREATED</title>
+<body>
+
+<div class="container-fluid main-box">
+    <div class="result col-6 offset-3 border-secondary shadow py-3 px-5 rounded">
+        <h2>User Created</h2>
+        <h3>Fullname: <%= user.name %> </h3>
+        <h3>Email: <%= user.email %></h3>
+        <h3>Role: <%= user.role %></h3> 
+    </div>
+</div>
+<%- include('./footer.ejs') %>
+</body>
+</html>

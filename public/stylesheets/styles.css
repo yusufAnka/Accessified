@@ -1,0 +1,376 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    /* font-family: sans-serif;
+     */
+     font-family: 'Mukta','Montserrat', sans-serif;
+  }
+  /* {
+    padding: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-color: #00B7FF;
+  } */
+  
+  .container {
+    width: 100%;
+    /* min-height: 100vh; */
+    padding-left: 8%;
+    padding-right: 8%;
+    box-sizing: border-box;
+    overflow: hidden;
+  } 
+
+
+  /* .navbar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    
+  }
+  .logo {
+    width: 100px;
+    cursor: pointer;
+    margin: 30px 0;
+  }
+  .menu {
+    width: 25px;
+    cursor: pointer;
+    display: none;
+  }
+  nav {
+    flex: 1;
+    text-align: right;
+  }
+  nav ul li {
+    list-style: none;
+    display: inline-block;
+    margin-right: 30px;
+  }
+  nav ul li a {
+    text-decoration: none;
+    color: #000;
+    font-size: 18px;
+  }
+  nav ul li a:hover {
+    color: #ff5ea2;
+  } */
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 100px 0;
+  }
+  .col {
+    flex-basis: 40%;
+    position: relative;
+    margin-left: 50px;
+  }
+  .col h2 {
+    font-size: 54px;
+    color: rgb(51, 10, 10);
+  }
+  .col h3 {
+    font-size: 30px;
+    color: #2f0a0a;
+    font-weight: 100;
+    margin: 20px 0 10px;
+  }
+  .col h4 {
+    margin: 30px 0;
+    font-size: 18px;
+    color: #2d2323;
+    font-weight: 100;
+  }
+  button {
+    width: 140px;
+    border: 0;
+    padding: 12px 10px;
+    outline: none;
+    color: #fff;
+    background: linear-gradient(to right, #6d1f34, #4a0d09);
+    cursor: pointer;
+    border-radius: 6px;
+    transition: width 0.5s;
+  }
+  button:hover {
+    width: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .col::after {
+    content: "";
+    width: 10px;
+    height: 100%;
+    background: linear-gradient(#39061d, #39061d);
+    position: absolute;
+    left: -40px;
+    top: 8px;
+  }
+  .col2 {
+    position: relative;
+    flex-basis: 60%;
+    display: inline;
+    margin-right: 50px;
+  }
+  .col2 .control {
+    width: 90%;
+  }
+  .color-box {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: linear-gradient(#39061d, #582c2d);
+    border-radius: 20px 0 0 20px;
+    height: 100%;
+    width: 80%;
+    z-index: -1;
+    transform: translateX(15px);
+  }
+  .footerCenter {
+    text-align: center;
+  }
+  .footerLeft{
+      align-items: flex-end;
+    
+  }
+  .footerright{
+      align-content: flex-end;
+  }
+  .copyright {
+    font-size: 20px;
+  }
+  .email{
+    width: 25px;
+    height: 25px;
+  }
+ 
+  /* @media only screen and (max-width: 700px) {
+    nav ul {
+      width: 100%;
+      background: linear-gradient(rgb(45, 19, 19), rgb(63, 21, 21));
+      position: absolute;
+      top: 65px;
+      right: 0;
+      z-index: 2;
+    
+    }
+    nav ul li {
+      display: block;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    nav ul li a {
+      color: #fff;
+      font-size: 10px;
+    }
+    .menu {
+      display: block;
+    } */
+    /* #menuList {
+      overflow: hidden;
+      transition: 0.5ps;
+    } */
+    .row {
+      flex-direction: column-reverse;
+      margin: 50px 0;
+    }
+    .col2 {
+      flex-basis: 100%;
+      margin-bottom: 50px;
+    }
+    .col2 .control {
+      width: 77%;
+    }
+    .color-box {
+      transform: translateX(3px);
+      /* display: none; */
+    }
+    .col {
+      flex-basis: 100%;
+    }
+    .col h2 {
+      font-size: 35px;
+    }
+    .col h3 {
+      font-size: 15px;
+    }
+/* Footer styling */
+footer {
+  margin: 0;
+  padding: 0;
+  color: #d9d9d9;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+footer{
+  /* position: relative; */
+  margin-top: 1px;
+  align-items: center;
+  padding: 20px;
+  bottom: 0px;
+  width: 102%;
+  background: rgb(52, 11, 11);
+  position: fixed;
+}
+
+.main-content{
+  display: flex;
+}
+.main-content .box{
+  flex-basis: 50%;
+  padding: 10px 20px;
+}
+.box h2{
+  font-size: 1.125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.box .content{
+  margin: 20px 0 0 0;
+  position: relative;
+}
+.box .content:before{
+  position: absolute;
+  content: '';
+  top: -10px;
+  height: 2px;
+  width: 100%;
+  background: #1a1a1a;
+}
+.box .content:after{
+  position: absolute;
+  content: '';
+  height: 2px;
+  width: 15%;
+  background: #f12020;
+  top: -10px;
+}
+.left .content p{
+  text-align: justify;
+}
+.left .content .social{
+  margin: 20px 0 0 0;
+}
+.left .content .social a{
+  padding: 0 2px;
+}
+.left .content .social a span{
+  height: 40px;
+  width: 40px;
+  background: #1a1a1a;
+  line-height: 40px;
+  text-align: center;
+  font-size: 18px;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+.left .content .social a span:hover{
+  background: #f12020;
+}
+.center .content .fas{
+  font-size: 1.4375rem;
+  background: #1a1a1a;
+  height: 45px;
+  width: 45px;
+  line-height: 45px;
+  text-align: center;
+  border-radius: 50%;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.center .content .fas:hover{
+  background: #f12020;
+}
+.center .content .text{
+  font-size: 1.0625rem;
+  font-weight: 500;
+  padding-left: 10px;
+}
+.center .content .phone{
+  margin: 15px 0;
+}
+.right form .text{
+  font-size: 1.0625rem;
+  margin-bottom: 2px;
+  color: #656565;
+}
+.right form .msg{
+  margin-top: 10px;
+}
+.right form input, .right form textarea{
+  width: 100%;
+  font-size: 1.0625rem;
+  background: #151515;
+  padding-left: 10px;
+  border: 1px solid #222222;
+}
+.right form input:focus,
+.right form textarea:focus{
+  outline-color: #3498db;
+}
+.right form input{
+  height: 35px;
+}
+.right form .btn{
+  margin-top: 10px;
+}
+.right form .btn button{
+  height: 40px;
+  width: 100%;
+  border: none;
+  outline: none;
+  background: #f12020;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: .3s;
+}
+.right form .btn button:hover{
+  background: #000;
+}
+.bottom {
+    text-align: center;
+}
+.bottom a:hover{
+  text-decoration: underline;
+}
+@media screen and (max-width: 900px) {
+  footer{
+    position: relative;
+    bottom: 0px;
+  }
+  .main-content{
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+  .main-content .box{
+    margin: 5px 0;
+  }
+}
+
+/* Registration page */
+/* .regcontainer{
+  
+} */
+/* .regForm{
+  margin: auto;
+  width: 100%;
+  padding: 30px;
+}
+.form_container{
+ max-width: 500px;
+ margin: auto;
+}
+.regText{
+  text-align: center;
+  color: #2f0a0a;
+  text-decoration: #3498db;
+} */
+
+/* LOGIN PAGE CSS DESIGN */
+  
+  

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./header.ejs') %>
+<%- include('./menuvar.ejs') %>
+    <title>NODE WEEK 6 TASK CRM|</title>
+
+    <body>
+        <div class="container-fluid main-box">
+            <div class="col text-center py-3">
+                <h1>Set Exam </h1>
+            </div>
+            <div class="row g-6">
+                <div class="col-6 offset-3 border-secondary shadow py-3 px-5 rounded">
+                    <form class="form_container" method="post" action="/users/setExam"
+                        enctype="application/x-www-form-urlencoded">
+                        <div class="form-group mb-1">
+                            <label for="name" class="form-label"></label>
+                            <div class="">
+                                <input type="name" class="form-control" id="ExamName" placeholder="Exam Name"
+                                    name="examName">
+                            </div>
+                        </div>
+                        <div class="form-group mb-1">
+                            <label for="week" class="form-label"></label>
+                            <div class="">
+                                <input type="name" class="form-control" id="week" placeholder="Week"
+                                    name="week">
+                            </div>
+                        </div>
+                        <div class="form-group mb-5">
+                            <label for="notes" class="form-label"></label>
+                            <div class="">
+                                <textarea type="text" class="form-control" id="instruction" placeholder="Examination Instruction"
+                                    name="instruction"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group mb-1">
+                            <label for="noOfQuestion" class="form-label"></label>
+                            <div class="">
+                                <input type="text" class="form-control" id="numberOfQuestion" placeholder="Number of Question"
+                                    name="count">
+                            </div>
+                        </div>
+                        <div class="form-group mb-1 questionNode">
+                            <label for="question1" class="form-label"></label>
+                            <div class="">
+                                <input type="text" class="form-control" id="question1" placeholder="Question One"
+                                    name="question1">
+                            </div>
+                        </div>
+                        <div class="form-group mb-2">
+                            <div class="text-center">
+                                <input type="button" class="btn btn-primary addQuestionBtn" id="addQuestionBtn" value="Add Question">
+                            </div>
+                        </div>
+                       
+                        
+                       
+                        
+                        
+                        <div class="form-group mb-3">
+                            <div class="text-center">
+                                <input type="submit" class="btn btn-primary" id="submit" value="Set Examination">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <%- include('./footer.ejs') %>
+    </body>
+
+</html>

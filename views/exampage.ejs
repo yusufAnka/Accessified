@@ -1,0 +1,356 @@
+<%- include("./header2.ejs")%>
+<%- include('./menuvar.ejs') %>
+<style>
+    #solution{
+        height: 400px;
+        font-family: 'Courier New', Courier, monospace;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="" id="parentDiv">
+
+                <div class="">
+                    <button class="btn btn-dark" id="instructionBtn" data-bs-toggle="collapse" data-bs-target="#instruction">Instructiion</button>
+                    <button class="btn btn-dark" id="resultBtn" data-bs-toggle="collapse" data-bs-target="#result">Results</button>
+                </div>
+                <div class="collapse" id="instruction" data-bs-parent="#parentDiv">
+                    <h1><%- question.title %></h1>
+                    <p><%- (question.instruction) %></p>
+                </div>
+                <div class="collapse" id="result" data-bs-parent="#parentDiv">
+
+                    <h3> You score is: <span id="score">0</span></h3>
+                    <p class="p-3" id="resultSlate"></p>
+                </div>
+            </div>
+
+
+
+
+            <div class="row my-5 fixed-bottom">
+                <div class="col-3">
+                    <h6>Got A Complain ? Chat Up </h6>
+                    <div id="chatContainer" style="z-index: 10;" class="collapse">
+                        <h6 class="text-right"><button type="close" id="chatToggler" class="btn close" data-bs-toggle="collapse" data-bs-target="#chatContainer">x</button> </h6>
+                        <div id="messages"></div>
+                        <div class="form-group">
+                            
+                            <label for="message">Message</label>
+                            <input type="text" id="message" class="form-control" name="message" placeholder="please enter message">
+                            <div class="form-group">
+                                <button class="btn btn-primary" id="send" type="button">send</button>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+
+                    <button id="chatBtn" class="btn btn-primary">Chat</button>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-8">
+
+            <div class="row">
+                <div class="col-4">
+
+                    <button type="button" onclick="runTest()" class="btn ">Run Test</button>
+                    <button type="button" id="submitButton" onclick="submitExam(event)" class="btn ">Submit</button>
+                </div>
+                <div class="col-4"></div>
+                <div class="col-4">
+                    <h6><i class="font-weight-bold" id="demeanoursSpan"></i></h6>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <form action="/exams/submitexam" method="post">
+                    <div class="form-group my-3">
+                        <label for="solution">Code your solution here</label>
+                        <textarea onpaste="recordDemeanour(event)" onkeyup="addIDEeffects(event) " class="form-control p-3 font-weight-bold bg-dark text-light" id="solution"></textarea> 
+                        <span id="enterCount" hidden="hidden">0</span>
+                        <span hidden="hidden" id="demeanourCounter"></span>
+                        <input id="demeanourCounterinput" type="hidden" name="demeanourCount" />
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript">
+
+    
+    function runTest(){
+    
+    try{
+        document.getElementById("resultBtn").click();
+
+        let score = 0;
+        const resultSlate = document.getElementById("resultSlate");
+        const solution = document.getElementById("solution");
+        const solutionValue = solution.value;
+        let scores = document.getElementById("score");
+    
+        resultSlate.textContent = "";
+        const tests = <%- JSON.stringify(question.tests) %>;
+        
+        const functionStr = "return "+ solutionValue;
+        const fnc = Function(functionStr);
+        const pointsPerCase = Math.round(100 / tests.length);
+        for(let i = 0; i < tests.length; i++){
+            const testResult = fnc()(tests[i].testCaseValue);
+            
+            let testPassed = false;
+            testCaseAnswerType = tests[i].testCaseAnswerType;
+            
+            if((testCaseAnswerType === "number") || (testCaseAnswerType === "boolean") || (testCaseAnswerType === "null") || (testCaseAnswerType === "undefined"))
+            {
+                if(testResult == tests[i].testCaseAnswerValue){
+                    testPassed = true;
+                }
+            }
+            else if(testCaseAnswerType === "string")
+            {
+                if(testResult == tests[i].testCaseAnswerValue || tests[i].testCaseAnswerValue.match(testResult)){
+                    testPassed = true;
+                }
+            }
+            else if(testCaseAnswerType === "object")
+            {
+                const trkeys = Object.keys(testResult);
+                const tcakeys = Object.keys(tests[i].testCaseAnswerValue);
+
+                if(trkeys.every((key) => { return tcakeys.includes(key) })){
+                    testPassed = true;
+                }
+            }
+            else if(testCaseAnswerType === "array")
+            {
+                if(testResult.length === tests[i].testCaseAnswerValue.length && tests[i].testCaseAnswerValue.every((element) => { return testResult.includes(element) })){
+                    testPassed = true
+                }
+            }
+            else if(testCaseAnswerType === "strictarray")
+            {
+            
+                if(JSON.stringify(tests[i].testCaseAnswerValue) === JSON.stringify(testResult)){
+                    testPassed = true;
+                }
+            
+            }
+            else
+            {
+                if(tests[i].testCaseAnswerValue == testResult){
+                    testPassed = true;
+                }
+            }
+
+            
+            if(testPassed)
+            {
+                resultSlate.innerHTML += `<p> Test ${i+1} passed, ${testResult} matches ${tests[i].testCaseAnswerValue} </p>`;
+                score += pointsPerCase;
+            }
+            else{ resultSlate.innerHTML += `<p> Test ${i+1} failed, got ${testResult} instead of ${tests[i].testCaseAnswerValue} </p>`; }
+
+        }
+        
+        scores.textContent = score === 0 ? `OLODO! None of your test cases passed, score na still ${score}`: score
+    
+    }
+    catch(e){
+    
+        resultSlate.textContent = e.message;
+        console.log(e.message)
+    
+    }
+
+}
+
+
+function addIDEeffects(event){
+    try{
+        const solution = document.getElementById("solution")
+        
+        const cursorIndex = solution.selectionStart;
+            
+        const brackets = {"{": "}", "(": ")", "[": "]"}
+        
+        let text = event.target.value;
+        
+        const textLength = text.length;
+
+        if(brackets[event.key]){
+        
+            const newText = text.slice(0,cursorIndex) + brackets[event.key] + text.slice(cursorIndex);
+            event.target.value = newText; 
+        
+            solution.setSelectionRange(cursorIndex,cursorIndex);
+        }
+        else if(event.key === "Enter"){
+            
+            const newStr = text.slice(0, cursorIndex) + "   \n"+ text.slice(cursorIndex);
+            event.target.value = newStr;
+            
+    
+            solution.setSelectionRange(cursorIndex + 3,cursorIndex + 3);
+        }
+    }catch(ex){ alert(ex.message); }
+
+}
+
+
+//window.tabs.onCreated.addListener(recordDemeanour);
+document.addEventListener("visibilitychange", recordDemeanour);
+
+function recordDemeanour(eventOrTab){
+    //alert(eventOrTab.type);
+    const eventType = eventOrTab.type ? eventOrTab.type : "tabToggle";
+
+    const demeanoursSpan = document.getElementById("demeanoursSpan");
+    const demeanourCounter = document.getElementById("demeanourCounter");
+    const demeanourContent = demeanourCounter.textContent
+    
+    if((!demeanourContent) || demeanourContent.search(`${eventType}`) == -1){
+        
+        const obj = demeanourContent ? JSON.parse(demeanourContent) : {};
+        obj[eventType] = 1;
+        demeanourCounter.textContent = JSON.stringify(obj);
+    }
+    else if(demeanourContent.search(`${eventType}`) !== -1){
+        const dObj = JSON.parse(demeanourContent);
+        dObj[`${eventType}`] = Number(dObj[eventType]) + 1;
+        demeanourCounter.textContent = JSON.stringify(dObj);
+    }
+    const demeanorFormattedString = demeanourCounter.textContent.replace(/[}{"]/g, "").replace(/,/g, "\n");
+    demeanoursSpan.textContent = demeanorFormattedString.replace("visibilitychange", "You Wandered Off And Back").replace("paste", "You Made A Copy / Paste ");
+    
+}
+
+async function submitExam(event){
+    try{
+        confirm("You sure want to submit ?");
+        runTest(); //reconfirm tests
+
+        document.getElementById("resultBtn").click()
+        
+        const totalScore = document.getElementById("score").textContent;
+        const solution = document.getElementById("solution").value;
+        const resultSlate = document.getElementById("resultSlate");
+        const demeanourContent = document.getElementById("demeanourCounter").textContent;
+        const question = <%- JSON.stringify(question) %>;
+        
+        const cookies = document.cookie.split(";");
+        const idString = cookies.filter((cookieString) => { return /^id=/i.test(cookieString.trim()) })[0];
+        const id = idString.trim().replace(/id=/, "");
+        
+        const postData = {
+            studentID: id || 0,
+            questionID: question.id,
+            score: totalScore,
+            solution: solution,
+            demeanours: (demeanourContent)
+        }
+        
+        const url = "/users/submitAlgoResult";
+        const result = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": 'application/json'
+            },
+            body: JSON.stringify(postData),
+            credentials: "include"
+
+        });
+        
+        resultSlate.textContent = "Your Result's been Submitted successfully";
+        event.target.hidden = "hidden";
+
+        if(totalScore === 100){ issueCertificate(totalScore, question.id, question.title) }
+
+        window.location = "/";
+    }
+    catch(e){ console.log(e.message)}
+}
+
+function issueCertificate(score, questionID, questionTitle){
+    return; 
+}
+
+
+
+
+
+  
+const user = <%- JSON.stringify(student) %>
+
+const socket = io(); //connect to socket
+
+
+
+const username = user.username;
+const room = user.room;
+
+const messages = document.getElementById("messages");
+const message = document.getElementById("message");
+const sendBtn = document.getElementById("send");
+const chatBtn = document.getElementById("chatBtn");
+const chatToggler = document.getElementById("chatToggler");
+
+chatBtn.addEventListener("click", (e) => {
+      
+      chatToggler.click();
+      socket.emit("joinRoom", {username: user.username, room: user.room})
+      e.target.hidden = true;
+
+  })
+
+  chatToggler.addEventListener("click", (e) => {
+
+        if(chatBtn.hidden === true){
+            return chatBtn.hidden = false;
+        }
+
+  })
+
+  sendBtn.addEventListener("click", (e) => {
+      
+      messages.innerHTML += `<p><div class="row"><div class="col"></div><div class="col bg-dark text-light"> <small class="">Me<br/> ${message.value} </small> </div> </div>  </p>`;
+      socket.emit("chatMessage", {message: message.value, username: user.username, room: user.room})
+      message.value = "";
+      
+  })
+
+  message.addEventListener("keyup", (e) => {
+      if(e.key == 'Enter'){
+          
+          messages.innerHTML += `<p><div class="row"><div class="col"></div><div class="col bg-dark text-light"> <small class="">Me<br/> ${message.value} </small> </div> </div>  </p>`;
+          socket.emit("chatMessage", {message: message.value, username: user.username, room: user.room})
+          message.value = "";
+          
+      }
+      
+  })
+
+  
+  socket.on("serverChatMessage", (data) => {
+      const dataObj = JSON.parse(data)
+      
+      messages.innerHTML += `<p><div class="row"><div class="col bg-dark text-light font-weight-bolder"> <small class="">${dataObj.username}<br/> ${dataObj.message} </small> </div> <div class="col"></div> </div>  </p>`;
+          
+  })
+  
+
+socket.on("joinedRoom", (data) => {
+  
+  messages.innerHTML += `<li> ${data} </li>`;
+
+})
+
+
+</script>

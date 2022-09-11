@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./header.ejs') %>
+  <%- include('./menuvar.ejs') %>
+  <title>ACCESSIFIED</title>
+<body>
+  <div class="container-fluid main-box">
+      <div class="col text-center py-3">
+        <h1>EXAM</h1>
+      </div>
+      <div class="row g-6">
+        <div class="col-6 offset-3 border-secondary shadow py-3 px-5 rounded">
+          <form class="form_container" method="post" action="/users/grade" enctype="application/x-www-form-urlencoded">
+           
+            <div class="form-group mb-1">
+              <label for="colFormLabel" class="form-label"></label>
+              <div class="">
+                <input type="text" class="form-control" id="colFormLabel" placeholder="Examination ID" name="examId">
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <div class="text-center">
+                <input type="submit" class="btn btn-primary" id="Create" value="Search" >
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+  </div>
+  <%- include('./footer.ejs') %>
+</body>
+</html>

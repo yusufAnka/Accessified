@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./header.ejs') %>
+<%- include('./menuvar.ejs') %>
+<title>ACCESSIFIED - EXAM CREATED</title>
+<body>
+
+<div class="container-fluid main-box">
+    <div class="result col-6 offset-3 border-secondary shadow py-3 px-5 rounded">
+        <h2>Exam Created</h2>
+        <h3>Exam Name: <%= exam.examName %> </h3>
+        <h3>Week: <%= exam.week %></h3>
+        <h3>Instruction: <%= exam.instruction %></h3> 
+    </div>
+</div>
+<%- include('./footer.ejs') %>
+</body>
+</html>

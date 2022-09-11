@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./header.ejs') %>
+  <%- include('./menuvar.ejs') %>
+  <title>ACCESSIFIED - STUDENTS</title>
+<body>
+  <div class="container-fluid main-box">
+      <div class="col text-center py-3">
+        <h1>Exam Name: <%= students[0].examName %></h1>
+        <h2>STUDENTS LIST</h2>
+      
+      </div>
+      <div class="row g-6">
+        <div class="col-6 offset-3 border-secondary shadow py-3 px-5 rounded">
+          
+
+
+            <% for (let i = 0; i < students.length; i++) {%>
+                    <div class="">
+                        <h3><a href="/users/markExam/<%= students[i].studentId %>"> <%= students[i].studentName %></a></h3>
+                    </div>
+             
+                
+                <%} %>
+
+           
+        </div>
+      </div>
+  </div>
+  <%- include('./footer.ejs') %>
+</body>
+</html>
